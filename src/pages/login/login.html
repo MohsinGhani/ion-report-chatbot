@@ -1,0 +1,57 @@
+<!--
+  Generated template for the Login page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar>
+        <ion-title *ngIf='loginMode'>Login</ion-title>
+        <ion-title *ngIf='!loginMode'>SignUp</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <form #signinForm="ngForm" novalidate *ngIf='loginMode'>
+        <ion-list>
+            <ion-item>
+                <ion-label floating>Email</ion-label>
+                <ion-input type="email" [(ngModel)]="user.email" name='email' required></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label floating>Password</ion-label>
+                <ion-input type="password" [(ngModel)]="user.password" name='password' required></ion-input>
+            </ion-item>
+
+            <button (click)="submitLogin()" [disabled]="!signinForm.form.valid" ion-button margin-vertical style="float:right">Login</button>
+        </ion-list>
+    </form>
+
+    <form #signupForm="ngForm" novalidate *ngIf='!loginMode'>
+        <ion-list>
+            <ion-item>
+                <ion-label floating>Name</ion-label>
+                <ion-input type="name" [(ngModel)]="user.name" name='name' required></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label floating>Email</ion-label>
+                <ion-input type="email" [(ngModel)]="user.email" name='email' required></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label floating>Password</ion-label>
+                <ion-input type="password" [(ngModel)]="user.password" name='password' required></ion-input>
+            </ion-item>
+            <button [disabled]="!signupForm.form.valid" (click)="Registration()" ion-button margin-vertical  style="float:right">SignUp</button>
+
+        </ion-list>
+    </form>
+
+    <button (click)="loginMode = true" ion-button margin-vertical *ngIf='!loginMode' full color="secondary" style="margin-top:85px">Goto Login</button>
+    <button (click)="loginMode = false" ion-button margin-vertical *ngIf='loginMode' full color="secondary" style="margin-top:150px">Goto SignUp</button>
+</ion-content>
